@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { youtubeService } from './youtube.service';
+import { youtubeService } from './models/youtube.service';
 
 @Component({
   selector: 'app-root',

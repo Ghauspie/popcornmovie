@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MovieComponent } from './movie/movie.component';
-import { youtubeService } from './youtube.service';
+import { youtubeService } from './models/youtube.service';
 
 @NgModule({
   declarations: [
