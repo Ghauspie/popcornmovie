@@ -1,15 +1,32 @@
-<section *ngIf="movies[1]!=null;else Movietemplate">
-    <div *ngFor="let item of movies">
+<section class="dynamic">
+    <h2>Résultats pour « {{inputSearch}} »<br></h2>
+    <div class="itemList">
+        <figure class="snip1527" *ngFor="let item of movies">
+            <div class="image"><img [src]="imgurl+item.poster_path" alt="poster of movie of {{item.title}}" /></div>
+            <figcaption>
+                <div class="date"><!-- <span class="day">28</span><span class="month">Oct</span> -->{{item.year}}</div>
+                <h3>{{item.title}}{{item.name}}</h3>
+                <br>
+                <button class="btn btn-success">{{item.adult}}</button>
+                <p><i class="fas fa-gamepad"></i> </p>
+                 <p><i class="fas fa-film"></i> {{item.overview}}</p>
+              </figcaption>
+              <a href="#"></a>
+ <!--              <button (click)="fetchYoutube('la+chèvre')">Afficher la BO</button>
+              <div id="youtube"></div> -->
+        </figure>
+    </div>
+<!--     <div *ngFor="let item of movies">
         <h2>{{item.title}}</h2>
         <h3>{{item.release_date}}</h3>
         <button>{{item.adult}}</button>
-        <button *ngFor="let michel of movies.genres">{{michel.name}}</button>
+        <button *ngFor="let Item2 of movies.genre_ids">{{Item2.name}}</button>
         <p>{{item.overview}}</p>
         <img [src]="imgurl+item.poster_path" alt="poster of movie of {{item.title}}">
-    </div>
+    </div> -->
 </section>
 
-<ng-template #Movietemplate>
+<!-- <ng-template #Movietemplate>
     <div>
         <h2>{{movies.title}}</h2>
         <h3>{{movies.release_date}}</h3>
@@ -19,4 +36,4 @@
         <img [src]="imgurl+movies.poster_path" alt="poster of movie of {{movies.title}}">
     </div>
 </ng-template>
-{{movies.id}}
+{{movies.id}} -->
