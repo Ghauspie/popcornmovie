@@ -10,11 +10,13 @@ import { youtubeService } from './models/youtube.service';
 export class AppComponent {
   title = 'popcornmovie';
   youtube$:any;
-  SearchMovie: string = '';
+  
   constructor(private youtubeService: youtubeService){}
-clickme(){
+/* clickme(){
   console.log(this.SearchMovie);
-}
+  let find:string=this.SearchMovie;
+  return find;
+} */
 
   fetchYoutube(titre:string){
     //this.youtube$ = this.youtubeService.fetchYoutube();
