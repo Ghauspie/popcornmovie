@@ -15,7 +15,7 @@
 <section class="dynamic hidden">
     <h2>Résultats pour « {{inputSearch}} »<br></h2>
     <div class="itemList">
-        <figure class="snip1527" *ngFor="let item of movies">
+        <figure class="snip1527" (click)="movie(item.id)" *ngFor="let item of movies">
             <div class="image"><img [src]="imgurl+item.poster_path" alt="poster of movie of {{item.title}}" /></div>
             <figcaption>
                 <div class="date"><!-- <span class="day">28</span><span class="month">Oct</span> -->{{item.year}}</div>
@@ -24,6 +24,22 @@
                 <button class="btn btn-success">{{item.adult}}</button>
                 <p><i class="fas fa-gamepad"></i> </p>
                  <p><i class="fas fa-film"></i> {{item.overview}}</p>
+              </figcaption>
+              <a href="#"></a>
+ <!--              <button (click)="fetchYoutube('la+chèvre')">Afficher la BO</button>
+              <div id="youtube"></div> -->
+        </figure>
+    </div>
+    <div id="movieOne" class="hidden">
+        <figure class="snip1527">
+            <div class="image"><img [src]="imgurl+this.Movie.poster_path" alt="poster of movie of {{Movie.title}}" /></div>
+            <figcaption>
+                <div class="date"><!-- <span class="day">28</span><span class="month">Oct</span> -->{{Movie.year}}</div>
+                <h3>{{Movie.title}}{{Movie.name}}</h3>
+                <br>
+                <button class="btn btn-success">{{Movie.adult}}</button>
+                <p><i class="fas fa-gamepad"></i> </p>
+                 <p><i class="fas fa-film"></i> {{Movie.overview}}</p>
               </figcaption>
               <a href="#"></a>
  <!--              <button (click)="fetchYoutube('la+chèvre')">Afficher la BO</button>

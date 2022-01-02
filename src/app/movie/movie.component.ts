@@ -10,6 +10,7 @@ import { youtubeService } from '../models/youtube.service';
 })
 export class MovieComponent implements OnInit {
   movies:any=[];
+  Movie:any=[];
   SearchMovie!: string ;
   public inputSearch!:string;
   public imgurl="https://image.tmdb.org/t/p/original";
@@ -49,6 +50,19 @@ export class MovieComponent implements OnInit {
     let dynamic:any=document.querySelector('.dynamic')
     dynamic.removeAttribute('class');
     dynamic.setAttribute('class','dynamic hidden');
+  }
+
+  movie(id:number):void{
+    console.log(id);
+    this.httpClient.get<any>('https://api.themoviedb.org/3/movie/'+id+'?api_key=9d8b48fb32540c5a9d149f413900ee04').subscribe((Response: any)=>{
+      console.log(Response);
+     this.Movie=Response; 
+     let movieOne:any=document.getElementById('movieOne')
+     movieOne.removeAttribute("class");  
+     let itemList:any=document.querySelector('.itemList')
+     itemList.setAttribute('class','hidden');
+    });
+
   }
 
 }
