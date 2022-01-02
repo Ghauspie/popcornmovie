@@ -34,6 +34,7 @@
         <figure class="snip1527">
             <div class="image"><img [src]="imgurl+this.Movie.poster_path" alt="poster of movie of {{Movie.title}}" /></div>
             <figcaption>
+                <a><i class="fa fa-close" data-dismiss="modal" #closeBtn></i></a>
                 <div class="date"><!-- <span class="day">28</span><span class="month">Oct</span> -->{{Movie.year}}</div>
                 <h3>{{Movie.title}}{{Movie.name}}</h3>
                 <br>

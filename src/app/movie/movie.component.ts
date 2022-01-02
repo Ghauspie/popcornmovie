@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 /* import { Movies } from '../models/movie.model'; */
 import {HttpClient} from '@angular/common/http';
 import { youtubeService } from '../models/youtube.service';
@@ -9,9 +9,11 @@ import { youtubeService } from '../models/youtube.service';
   styleUrls: ['./movie.component.scss']
 })
 export class MovieComponent implements OnInit {
+  @ViewChild('closeBtn') closeBtn!: ElementRef;
   movies:any=[];
   Movie:any=[];
   SearchMovie!: string ;
+  movieOne:any=document.getElementById('movieOne');
   public inputSearch!:string;
   public imgurl="https://image.tmdb.org/t/p/original";
   private _movieListUrl="https://api.themoviedb.org/3/movie/550?api_key=9d8b48fb32540c5a9d149f413900ee04";
@@ -20,6 +22,7 @@ export class MovieComponent implements OnInit {
     let moviesList=await fetch(this._movieListUrl).then(res =>res.json()).then(data=>this.movie=data);
     console.log(moviesList,this.movie);
   } */
+
   ngOnInit(): void {
      /* this.getMovie();  */
 /*    let tesr=this._httpClient.get<Movies[]>(this._movieListUrl);
@@ -27,6 +30,7 @@ export class MovieComponent implements OnInit {
    console.log(tesr); */
   /* this.getMovie(find);
  */
+
   }
   clickme(){
     console.log(this.SearchMovie);
@@ -62,7 +66,29 @@ export class MovieComponent implements OnInit {
      let itemList:any=document.querySelector('.itemList')
      itemList.setAttribute('class','hidden');
     });
+  }
+  
 
+/* @HostListener('window:click', ['$event']) onClick(event)
+  {  
+  if(!event.target.closest("snip1527"))
+    {
+    console.log("second test close"); 
+    }
+  } */
+
+/*   closemovie(){
+    console.log("test de la fenetre close")
+    let movieOne:any=document.getElementById('movieOne')
+     movieOne.setAttribute("class",'hidden');  
+     let itemList:any=document.querySelector('.itemList')
+     itemList.removeAttribute('class');
+     itemList.setAttribute("class","itemList");
   }
 
+  public closeModal(): void {
+    console.log('test 3')
+    this.closeBtn.nativeElement.click();
+} */
+  
 }
