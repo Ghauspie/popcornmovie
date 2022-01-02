@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { youtubeService } from './models/youtube.service';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,7 +10,13 @@ import { youtubeService } from './models/youtube.service';
 export class AppComponent {
   title = 'popcornmovie';
   youtube$:any;
+  
   constructor(private youtubeService: youtubeService){}
+/* clickme(){
+  console.log(this.SearchMovie);
+  let find:string=this.SearchMovie;
+  return find;
+} */
 
   fetchYoutube(titre:string){
     //this.youtube$ = this.youtubeService.fetchYoutube();

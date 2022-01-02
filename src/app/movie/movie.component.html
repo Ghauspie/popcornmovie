@@ -1,7 +1,21 @@
-<section class="dynamic">
+<section class="header">
+    <div class="illustration"><img class="homePic" src="assets/img/cover.webp?h=2b4a953b283c178ac5acb098d3bc2cc0"></div>
+    <div class="fieldList">
+        <div class="row padMar">
+            <div class="col padMar">
+                <h1>Nothing on TV yet bro' ?</h1>
+                <p>Type at least one keyword to find your happiness.</p>
+                <div class="input-group">
+                    <input (click)="resetResult()" class="form-control autocomplete" type="text" id="SearchMovie" name="SearchMovie" placeholder="Keyword, Actor, ..." [(ngModel)]="SearchMovie">
+                        <button class="btn btn-warning" type="button" (click)="clickme()"><i class="fa fa-search"></i></button></div><p><br><i>Pssss !</i> The trick to avoid paying the TV fee. Come on bro <a href='https://www.lafinancepourtous.com/outils/questions-reponses/qui-peut-etre-exonere-de-la-redevance-audiovisuelle/?gclid=CjwKCAiAiKuOBhBQEiwAId_sK-iLmQ920xKXj4X5JWWmy6NTw5tnVT7coYKHxt6AXbiY-Z_oC9-xFRoC6DQQAvD_BwE'>give me the tip</a>!<br /></p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="dynamic hidden">
     <h2>Résultats pour « {{inputSearch}} »<br></h2>
     <div class="itemList">
-        <figure class="snip1527" *ngFor="let item of movies">
+        <figure class="snip1527" (click)="movie(item.id)" *ngFor="let item of movies">
             <div class="image"><img [src]="imgurl+item.poster_path" alt="poster of movie of {{item.title}}" /></div>
             <figcaption>
                 <div class="date"><!-- <span class="day">28</span><span class="month">Oct</span> -->{{item.year}}</div>
@@ -10,6 +24,23 @@
                 <button class="btn btn-success">{{item.adult}}</button>
                 <p><i class="fas fa-gamepad"></i> </p>
                  <p><i class="fas fa-film"></i> {{item.overview}}</p>
+              </figcaption>
+              <a href="#"></a>
+ <!--              <button (click)="fetchYoutube('la+chèvre')">Afficher la BO</button>
+              <div id="youtube"></div> -->
+        </figure>
+    </div>
+    <div id="movieOne" class="hidden">
+        <figure class="snip1527">
+            <div class="image"><img [src]="imgurl+this.Movie.poster_path" alt="poster of movie of {{Movie.title}}" /></div>
+            <figcaption>
+                <a><i class="fa fa-close" data-dismiss="modal" #closeBtn></i></a>
+                <div class="date"><!-- <span class="day">28</span><span class="month">Oct</span> -->{{Movie.year}}</div>
+                <h3>{{Movie.title}}{{Movie.name}}</h3>
+                <br>
+                <button class="btn btn-success">{{Movie.adult}}</button>
+                <p><i class="fas fa-gamepad"></i> </p>
+                 <p><i class="fas fa-film"></i> {{Movie.overview}}</p>
               </figcaption>
               <a href="#"></a>
  <!--              <button (click)="fetchYoutube('la+chèvre')">Afficher la BO</button>
