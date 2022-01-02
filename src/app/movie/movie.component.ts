@@ -45,5 +45,10 @@ export class MovieComponent implements OnInit {
      dynamic.setAttribute('class','dynamic');
     });
   }
+  resetResult(){
+    let dynamic:any=document.querySelector('.dynamic')
+    dynamic.removeAttribute('class');
+    dynamic.setAttribute('class','dynamic hidden');
+  }
 
 }
