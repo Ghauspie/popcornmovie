@@ -71,7 +71,7 @@ export class MovieComponent implements OnInit {
 
   //Function for reset the input SearchMovie  and the result
   resetResult(){
-    let dynamic:any=document.querySelector('.dynamic')
+    let dynamic=document.querySelector('.dynamic')as HTMLElement
     dynamic.removeAttribute('class');
     dynamic.setAttribute('class','dynamic hidden');
     this.SearchMovie="";
@@ -88,11 +88,11 @@ export class MovieComponent implements OnInit {
       this.httpClient.get<any>('https://api.themoviedb.org/3/movie/'+id+'?api_key=9d8b48fb32540c5a9d149f413900ee04').subscribe((Response: any)=>{
       console.log(Response);
       this.Movie=Response; 
-      let modalbox:any=document.querySelector('.modalbox')
+      let modalbox=document.querySelector('.modalbox')as HTMLElement
       modalbox.removeAttribute("class")
       modalbox.setAttribute('class','modalbox')
       /* modalbox.style.display="block"; */ 
-      let bgModal:any=document.querySelector('.bgModal')  
+      let bgModal=document.querySelector('.bgModal')as HTMLElement  
       bgModal.removeAttribute("class")
       bgModal.setAttribute('class','bgModal');
       this.fetchYoutube(Response.title);
