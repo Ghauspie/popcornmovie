@@ -38,13 +38,13 @@
         </div>
     </div>
 </section>
-<section class="dynamic hidden">
+<section class="dynamic hidden" id="dynamic">
     <h2>Résultats pour « {{inputSearch}} »<br></h2>
     <div class="itemList">
         <figure class="snip1527" (click)="movie(item.id)" *ngFor="let item of movies">
             <div class="image"><img [src]="imgurl+checkImg(item.poster_path, item.backdrop_path)" alt="poster of movie of {{item.title}}" /></div>
             <figcaption>
-                <div class="date"><!-- <span class="day">28</span><span class="month">Oct</span> -->{{item.year}}</div>
+                <div class="date"><!-- <span class="day">28</span><span class="month">Oct</span> -->{{item.release_date | date :'yyyy'}}</div>
                 <h3>{{item.title}}{{item.name}}</h3>
                 <br>
                 <button class="btn btn-success">{{item.adult}}</button>
