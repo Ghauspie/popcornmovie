@@ -44,7 +44,10 @@
         <figure class="snip1527" (click)="movie(item.id)" *ngFor="let item of movies">
             <div class="image"><img [src]="imgurl+checkImg(item.poster_path, item.backdrop_path)" alt="poster of movie of {{item.title}}" /></div>
             <figcaption>
-                <div class="date"><!-- <span class="day">28</span><span class="month">Oct</span> -->{{item.release_date | date :'yyyy'}}</div>
+                <div class="date" *ngIf="item.release_date!=null || item.first_air_date!=null"><!-- <span class="day">28</span><span class="month">Oct</span> -->
+                    {{item.release_date | date :'yyyy'}}
+                    {{item.first_air_date | date :'yyyy'}}
+                </div>
                 <h3>{{item.title}}{{item.name}}</h3>
                 <br>
                 <button class="btn btn-success">{{item.adult}}</button>
