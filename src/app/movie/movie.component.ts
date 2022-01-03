@@ -15,6 +15,7 @@ export class MovieComponent implements OnInit {
   youtube$:any;
   public modalbox:any=document.querySelector('.modalbox'); 
   movies:any=[];
+  moviesgenre:any=[]
   Movie:any=[];
   SearchMovie!: string ;
   genres: any=[];
@@ -137,28 +138,31 @@ export class MovieComponent implements OnInit {
   getGenreMovie(){
     this.httpClient.get<any>('https://api.themoviedb.org/3/genre/movie/list?api_key=9d8b48fb32540c5a9d149f413900ee04').subscribe((Response: any)=>{
     this.genres = Response.genres;
-    console.log(this.genres);   
     });
   }
 
   searchMoviebyGenre(){
     let opt:any = document.getElementById('opt');
-    let optValue: any = opt.options[opt.selectedIndex].text
-    this.getMovie(optValue);
+    const optValue: number = opt.options[opt.selectedIndex].value
+    const optName:string= opt.options[opt.selectedIndex].text;
+    console.log(optValue,optName);
+    this.getMovieGenre(optValue, optName);
   }  
 
   //function for display the result of the request SearchMovie
-  getMovieGenre(inputGenre:string):void{
-    this.httpClient.get<any>('https://api.themoviedb.org/3/genre/movie/list?api_key=9d8b48fb32540c5a9d149f413900ee04&query='+inputGenre).subscribe((Response: any)=>{
-      console.log(Response.results);
-     this.movies=Response.results; 
-     //this.inputSearch=inputSearch;
+  getMovieGenre(inputGenre:number,inputGenreName:string):void{
+    this.httpClient.get<any>('https://api.themoviedb.org/3/discover/movie?api_key=9d8b48fb32540c5a9d149f413900ee04&with_genres='+inputGenre).subscribe((Response: any)=>{
+      console.log(Response);
+      this.movies="";
+     this.moviesgenre=Response.results; 
+     this.inputSearch=inputGenreName; 
      let dynamic:any=document.querySelector('.dynamic')
      dynamic.removeAttribute('class');
      dynamic.setAttribute('class','dynamic');
      this.scrollDynamic();
     });
   }
+
 
 }
 

@@ -52,8 +52,8 @@
     <h2>Résultats pour « {{inputSearch}} »<br></h2>
     <div class="itemList">
 
-        <span *ngFor="let item of movies">
-            <figure class="snip1527" (click)="movie(item.id)" *ngIf="(item.poster_path+item.backdrop_path != '' && item.poster_path+item.backdrop_path != null && item.poster_path+item.backdrop_path != undefined) && (item.name+item.title != '' && item.name+item.title != null && item.name+item.title != undefined) && item.media_type=='movie'">
+        <span *ngFor="let item of movies || moviesgenre">
+            <figure class="snip1527" (click)="movie(item.id)" *ngIf="(item.poster_path+item.backdrop_path != '' && item.poster_path+item.backdrop_path != null && item.poster_path+item.backdrop_path != undefined) && (item.name+item.title != '' && item.name+item.title != null && item.name+item.title != undefined) && (item.media_type=='movie' || item.media_type==null)" >
                 <div class="image"><img [src]="imgurl+checkImg(item.poster_path, item.backdrop_path)" alt="poster of movie of {{item.title}}" /></div>
                 <figcaption>
                   <div class="date" *ngIf="item.release_date!=null || item.first_air_date!=null"><!-- <span class="day">28</span><span class="month">Oct</span> -->
