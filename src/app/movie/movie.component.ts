@@ -1,7 +1,8 @@
-import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 /* import { Movies } from '../models/movie.model'; */
 import {HttpClient} from '@angular/common/http';
 import { youtubeService } from '../models/youtube.service';
+
 
 
 @Component({
@@ -10,22 +11,21 @@ import { youtubeService } from '../models/youtube.service';
   styleUrls: ['./movie.component.scss']
 })
 export class MovieComponent implements OnInit {
-  youtube$:any;
 
-  @ViewChild('closeBtn') closeBtn!: ElementRef;
+  youtube$:any;
+  public modalbox:any=document.querySelector('.modalbox'); 
   movies:any=[];
   Movie:any=[];
   SearchMovie!: string ;
-  movieOne:any=document.getElementById('movieOne');
   public inputSearch!:string;
   public imgurl="https://image.tmdb.org/t/p/original";
-
   private _movieListUrl="https://api.themoviedb.org/3/movie/550?api_key=9d8b48fb32540c5a9d149f413900ee04";
   constructor(private httpClient: HttpClient, private youtubeService: youtubeService) { }
 
   ngOnInit(): void {
-
+  
   }
+
 
   checkImg(poster:string, backdrop:string):string{
     if(poster == null){
@@ -38,7 +38,12 @@ export class MovieComponent implements OnInit {
       return poster;
     }
   }
-
+  //function for close windows modal when your click outside 
+  ClickedOut(event:any) {
+    if(event.target.className === "modalbox") {
+      this.closeModal();
+    } 
+ }
 
   //function for send the input SearchMovie
 
@@ -84,7 +89,12 @@ export class MovieComponent implements OnInit {
       console.log(Response);
       this.Movie=Response; 
       let modalbox:any=document.querySelector('.modalbox')
-      modalbox.style.display="block";
+      modalbox.removeAttribute("class")
+      modalbox.setAttribute('class','modalbox')
+      /* modalbox.style.display="block"; */ 
+      let bgModal:any=document.querySelector('.bgModal')  
+      bgModal.removeAttribute("class")
+      bgModal.setAttribute('class','bgModal');
       this.fetchYoutube(Response.title);
     });
   }
@@ -104,15 +114,12 @@ export class MovieComponent implements OnInit {
     )
   }
   
-  private closeModal():void{
-    this.closeBtn.nativeElement.click();
-  }
-
-   closemovie(){
-     this.closeModal;
+ public closeModal(){
     console.log("test de la fenetre close")
-    let movieOne:any=document.getElementById('movieOne')
-     movieOne.setAttribute("class",'hidden');  
+    let movieOne:any=document.querySelector('.modalbox')
+     movieOne.setAttribute("class",'modalbox hidden');
+     let modalbox:any=document.querySelector('.bgModal')   
+     modalbox.setAttribute('class','bgModal hidden');
      let itemList:any=document.querySelector('.itemList')
      itemList.removeAttribute('class');
      itemList.setAttribute("class","itemList");
