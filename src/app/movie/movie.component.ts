@@ -75,11 +75,13 @@ export class MovieComponent implements OnInit {
   movie(id:number):void{
       console.log(id);
       this.httpClient.get<any>('https://api.themoviedb.org/3/movie/'+id+'?api_key=9d8b48fb32540c5a9d149f413900ee04').subscribe((Response: any)=>{
-      console.log(Response);
+      console.table(Response);
       this.Movie=Response; 
       let modalbox:any=document.querySelector('.modalbox')
       modalbox.style.display="block";
       this.fetchYoutube(Response.title);
+      let illustration:any=document.querySelector('.modalbox .illustration');
+      illustration.src= this.imgurl + this.checkImg(Response.poster_path, Response.backdrop_path)
     });
   }
 
