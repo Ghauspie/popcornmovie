@@ -1,4 +1,4 @@
-<div class="modalbox hidden">
+<div class="modalbox hidden" appOutside (click)="ClickedOut($event)">
     <div class="bgModal">
         <div class="barModal">
             <span class="title">{{Movie.title}}{{Movie.name}}</span>
