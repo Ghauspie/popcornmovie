@@ -3,6 +3,7 @@ import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular
 import {HttpClient} from '@angular/common/http';
 import { youtubeService } from '../models/youtube.service';
 
+
 @Component({
   selector: 'app-movie',
   templateUrl: './movie.component.html',
@@ -54,6 +55,7 @@ export class MovieComponent implements OnInit {
     let dynamic:any=document.querySelector('.dynamic')
     dynamic.removeAttribute('class');
     dynamic.setAttribute('class','dynamic hidden');
+    this.SearchMovie="";
   }
 
   movie(id:number):void{
