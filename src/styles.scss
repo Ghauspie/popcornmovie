@@ -34,7 +34,7 @@
   }
   
   div.modalbox {
-    position: fixed;
+    position: absolute;
     top: 0px;
     left: 0px;
     width: 100%;
@@ -43,7 +43,7 @@
     z-index: 9999;
     padding: 2%;
     overflow: auto;
-    display: none;
+   /*  display: none; */
   }
   
   div.modalbox .bgModal {
