@@ -42,6 +42,7 @@ export class MovieComponent implements OnInit {
      let dynamic:any=document.querySelector('.dynamic')
      dynamic.removeAttribute('class');
      dynamic.setAttribute('class','dynamic');
+     this.scrollDynamic();
     });
   }
 
@@ -84,5 +85,12 @@ export class MovieComponent implements OnInit {
      itemList.removeAttribute('class');
      itemList.setAttribute("class","itemList");
   }  
+
+  scrollDynamic(){
+    let sectionDynamic:any = document.getElementById('dynamic');
+    setTimeout(()=>{
+      sectionDynamic.scrollIntoView()
+    },50)
+  }
 }
 
