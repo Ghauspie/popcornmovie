@@ -1,12 +1,12 @@
-<div class="modalbox">
+<div class="modalbox hidden" appOutside (click)="ClickedOut($event)">
     <div class="bgModal">
         <div class="barModal">
             <span class="title">{{Movie.title}}{{Movie.name}}</span>
-            <i class="far fa-times-circle" alt="Fermer"></i>
+            <i class="far fa-times-circle" alt="Fermer" (click)="closeModal()"></i>
         </div>
         <div class="contentModal">
             <div class="rowLeft">
-                <img src="assets/img/18478156.jpg?h=870429ad4751d7bebc5792ec871e98a6" class="illustration"/>
+                <img src="" class="illustration"/>
                 <h5>VOD:</h5>
                 <p class="platformList"> 
                     <button onclick="window.open('https://www.netflix.com/');"><img src="assets/img/icons/netflix.png?h=9f98133d66f72120c2f3ef6b5228cb94" alt="Netflix" title="Netflix"/><span class="txt">Netflix</span></button> 
@@ -32,6 +32,7 @@
                 <h1>Nothing on TV yet bro' ?</h1>
                 <p>Type at least one keyword to find your happiness.</p>
                 <div class="input-group">
+
                     <input (click)="resetResult()" class="form-control autocomplete" type="text" id="SearchMovie" (keyup)="handleKeyUp($event)"  name="SearchMovie" placeholder="Keyword, Actor, ..." [(ngModel)]="SearchMovie">
                         <button class="btn btn-warning" type="button" (click)="clickme()"><i class="fa fa-search"></i></button></div><p><br>
 
@@ -50,22 +51,25 @@
 <section class="dynamic hidden" id="dynamic">
     <h2>Résultats pour « {{inputSearch}} »<br></h2>
     <div class="itemList">
-        <figure class="snip1527" (click)="movie(item.id)" *ngFor="let item of movies">
-            <div class="image"><img [src]="imgurl+checkImg(item.poster_path, item.backdrop_path)" alt="poster of movie of {{item.title}}" /></div>
-            <figcaption>
-                <div class="date" *ngIf="item.release_date!=null || item.first_air_date!=null"><!-- <span class="day">28</span><span class="month">Oct</span> -->
-                    {{item.release_date | date :'yyyy'}}
-                    {{item.first_air_date | date :'yyyy'}}
-                </div>
-                <h3>{{item.title}}{{item.name}}</h3>
-                <br>
-                <button class="btn btn-success">{{item.adult}}</button>
-                <p><i class="fas fa-gamepad"></i> </p>
-                 <p><i class="fas fa-film"></i> {{item.overview}}</p>
-              </figcaption>
-              <a href="#"></a>
- <!--              <button (click)="fetchYoutube('la+chèvre')">Afficher la BO</button>
-              <div id="youtube"></div> -->
-        </figure>
+
+        <span *ngFor="let item of movies">
+            <figure class="snip1527" (click)="movie(item.id)" *ngIf="(item.poster_path+item.backdrop_path != '' && item.poster_path+item.backdrop_path != null && item.poster_path+item.backdrop_path != undefined) && (item.name+item.title != '' && item.name+item.title != null && item.name+item.title != undefined) && item.media_type=='movie'">
+                <div class="image"><img [src]="imgurl+checkImg(item.poster_path, item.backdrop_path)" alt="poster of movie of {{item.title}}" /></div>
+                <figcaption>
+                  <div class="date" *ngIf="item.release_date!=null || item.first_air_date!=null"><!-- <span class="day">28</span><span class="month">Oct</span> -->
+                      {{item.release_date | date :'yyyy'}}
+                      {{item.first_air_date | date :'yyyy'}}
+                  </div>
+                  <h3>{{item.title}}{{item.name}}</h3>
+                  <br>
+                    <p><i class="fas fa-gamepad"></i> </p>
+                    <p><i class="fas fa-film"></i> {{item.overview}}</p>
+                </figcaption>
+            </figure>
+        </span>
+
     </div>
 </section>
+
+
+
