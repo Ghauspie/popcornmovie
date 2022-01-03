@@ -6,7 +6,7 @@
                 <h1>Nothing on TV yet bro' ?</h1>
                 <p>Type at least one keyword to find your happiness.</p>
                 <div class="input-group">
-                    <input (click)="resetResult()" class="form-control autocomplete" type="text" id="SearchMovie" name="SearchMovie" placeholder="Keyword, Actor, ..." [(ngModel)]="SearchMovie">
+                    <input (click)="resetResult()" class="form-control autocomplete" type="text" id="SearchMovie" (keyup)="handleKeyUp($event)"  name="SearchMovie" placeholder="Keyword, Actor, ..." [(ngModel)]="SearchMovie">
                         <button class="btn btn-warning" type="button" (click)="clickme()"><i class="fa fa-search"></i></button></div><p><br><i>Pssss !</i> The trick to avoid paying the TV fee. Come on bro <a href='https://www.lafinancepourtous.com/outils/questions-reponses/qui-peut-etre-exonere-de-la-redevance-audiovisuelle/?gclid=CjwKCAiAiKuOBhBQEiwAId_sK-iLmQ920xKXj4X5JWWmy6NTw5tnVT7coYKHxt6AXbiY-Z_oC9-xFRoC6DQQAvD_BwE'>give me the tip</a>!<br /></p>
             </div>
         </div>
@@ -34,7 +34,7 @@
         <figure class="snip1527">
             <div class="image"><img [src]="imgurl+this.Movie.poster_path" alt="poster of movie of {{Movie.title}}" /></div>
             <figcaption>
-                <a><i class="fa fa-close" data-dismiss="modal" #closeBtn></i></a>
+                <a><i class="fa fa-close" data-dismiss="modal" #closeBtn (click)="closemovie()"></i></a>
                 <div class="date"><!-- <span class="day">28</span><span class="month">Oct</span> -->{{Movie.year}}</div>
                 <h3>{{Movie.title}}{{Movie.name}}</h3>
                 <br>
@@ -47,24 +47,5 @@
               <div id="youtube"></div> -->
         </figure>
     </div>
-<!--     <div *ngFor="let item of movies">
-        <h2>{{item.title}}</h2>
-        <h3>{{item.release_date}}</h3>
-        <button>{{item.adult}}</button>
-        <button *ngFor="let Item2 of movies.genre_ids">{{Item2.name}}</button>
-        <p>{{item.overview}}</p>
-        <img [src]="imgurl+item.poster_path" alt="poster of movie of {{item.title}}">
-    </div> -->
-</section>
 
-<!-- <ng-template #Movietemplate>
-    <div>
-        <h2>{{movies.title}}</h2>
-        <h3>{{movies.release_date}}</h3>
-        <button>{{movies.adult}}</button><br>
-        <button *ngFor="let michel of movies.genres">{{michel.name}}</button>
-        <p>{{movies.overview}}</p>
-        <img [src]="imgurl+movies.poster_path" alt="poster of movie of {{movies.title}}">
-    </div>
-</ng-template>
-{{movies.id}} -->
+</section>

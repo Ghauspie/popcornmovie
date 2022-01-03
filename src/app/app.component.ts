@@ -12,11 +12,6 @@ export class AppComponent {
   youtube$:any;
   
   constructor(private youtubeService: youtubeService){}
-/* clickme(){
-  console.log(this.SearchMovie);
-  let find:string=this.SearchMovie;
-  return find;
-} */
 
   fetchYoutube(titre:string){
     //this.youtube$ = this.youtubeService.fetchYoutube();

@@ -3,6 +3,7 @@ import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular
 import {HttpClient} from '@angular/common/http';
 import { youtubeService } from '../models/youtube.service';
 
+
 @Component({
   selector: 'app-movie',
   templateUrl: './movie.component.html',
@@ -16,30 +17,23 @@ export class MovieComponent implements OnInit {
   movieOne:any=document.getElementById('movieOne');
   public inputSearch!:string;
   public imgurl="https://image.tmdb.org/t/p/original";
-  private _movieListUrl="https://api.themoviedb.org/3/movie/550?api_key=9d8b48fb32540c5a9d149f413900ee04";
   constructor(private httpClient: HttpClient) { }
-/*   fetchMovie= async() => {
-    let moviesList=await fetch(this._movieListUrl).then(res =>res.json()).then(data=>this.movie=data);
-    console.log(moviesList,this.movie);
-  } */
+
 
   ngOnInit(): void {
-     /* this.getMovie();  */
-/*    let tesr=this._httpClient.get<Movies[]>(this._movieListUrl);
-   return tesr;
-   console.log(tesr); */
-  /* this.getMovie(find);
- */
 
   }
+
+  //function for send the input SearchMovie
   clickme(){
     console.log(this.SearchMovie);
     let find:string=this.SearchMovie;
     this.getMovie(find);
 
   }  
+
+  //function for display the result of the request SearchMovie
   getMovie(inputSearch:string):void{
-   
     let inputSearchClean:string = inputSearch.replace(/ /g,"+");
     this.httpClient.get<any>('http://api.themoviedb.org/3/search/multi?api_key=9d8b48fb32540c5a9d149f413900ee04&query='+inputSearchClean).subscribe((Response: any)=>{
       console.log(Response.results);
@@ -50,12 +44,21 @@ export class MovieComponent implements OnInit {
      dynamic.setAttribute('class','dynamic');
     });
   }
+
+  //Function for reset the input SearchMovie  and the result
   resetResult(){
     let dynamic:any=document.querySelector('.dynamic')
     dynamic.removeAttribute('class');
     dynamic.setAttribute('class','dynamic hidden');
+    this.SearchMovie="";
   }
-
+  //function for when click on "enter" send the SearchMovie
+  handleKeyUp(event:any){
+    if (event.keyCode===13){
+      this.clickme();
+    }
+  }
+  //function for display one movie
   movie(id:number):void{
     console.log(id);
     this.httpClient.get<any>('https://api.themoviedb.org/3/movie/'+id+'?api_key=9d8b48fb32540c5a9d149f413900ee04').subscribe((Response: any)=>{
@@ -68,27 +71,18 @@ export class MovieComponent implements OnInit {
     });
   }
   
+  private closeModal():void{
+    this.closeBtn.nativeElement.click();
+  }
 
-/* @HostListener('window:click', ['$event']) onClick(event)
-  {  
-  if(!event.target.closest("snip1527"))
-    {
-    console.log("second test close"); 
-    }
-  } */
-
-/*   closemovie(){
+   closemovie(){
+     this.closeModal;
     console.log("test de la fenetre close")
     let movieOne:any=document.getElementById('movieOne')
      movieOne.setAttribute("class",'hidden');  
      let itemList:any=document.querySelector('.itemList')
      itemList.removeAttribute('class');
      itemList.setAttribute("class","itemList");
-  }
-
-  public closeModal(): void {
-    console.log('test 3')
-    this.closeBtn.nativeElement.click();
-} */
-  
+  }  
 }
+
