@@ -84,7 +84,12 @@ export class MovieComponent implements OnInit {
       console.log(Response);
       this.Movie=Response; 
       let modalbox:any=document.querySelector('.modalbox')
-      modalbox.style.display="block";
+      modalbox.removeAttribute("class")
+      modalbox.setAttribute('class','modalbox')
+      /* modalbox.style.display="block"; */ 
+      let bgModal:any=document.querySelector('.bgModal')  
+      bgModal.removeAttribute("class")
+      bgModal.setAttribute('class','bgModal');
       this.fetchYoutube(Response.title);
     });
   }
@@ -104,15 +109,14 @@ export class MovieComponent implements OnInit {
     )
   }
   
-  private closeModal():void{
-    this.closeBtn.nativeElement.click();
-  }
 
-   closemovie(){
-     this.closeModal;
+
+  closeModal(){
     console.log("test de la fenetre close")
-    let movieOne:any=document.getElementById('movieOne')
-     movieOne.setAttribute("class",'hidden');  
+    let movieOne:any=document.querySelector('.modalbox')
+     movieOne.setAttribute("class",'modalbox hidden');
+     let modalbox:any=document.querySelector('.bgModal')  
+     modalbox.setAttribute('class','bgModal hidden');
      let itemList:any=document.querySelector('.itemList')
      itemList.removeAttribute('class');
      itemList.setAttribute("class","itemList");

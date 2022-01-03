@@ -1,8 +1,8 @@
-<div class="modalbox">
+<div class="modalbox hidden">
     <div class="bgModal">
         <div class="barModal">
             <span class="title">{{Movie.title}}{{Movie.name}}</span>
-            <i class="far fa-times-circle" alt="Fermer"></i>
+            <i class="far fa-times-circle" alt="Fermer" (click)="closeModal()"></i>
         </div>
         <div class="contentModal">
             <div class="rowLeft">
