@@ -14,6 +14,7 @@ export class MovieComponent implements OnInit {
   movies:any=[];
   Movie:any=[];
   SearchMovie!: string ;
+  genres: any=[];
   movieOne:any=document.getElementById('movieOne');
   public inputSearch!:string;
   public imgurl="https://image.tmdb.org/t/p/original";
@@ -21,7 +22,7 @@ export class MovieComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+    this.getGenreMovie();
   }
 
   //function for send the input SearchMovie
@@ -29,7 +30,6 @@ export class MovieComponent implements OnInit {
     console.log(this.SearchMovie);
     let find:string=this.SearchMovie;
     this.getMovie(find);
-
   }  
 
   //function for display the result of the request SearchMovie
@@ -91,6 +91,32 @@ export class MovieComponent implements OnInit {
     setTimeout(()=>{
       sectionDynamic.scrollIntoView()
     },50)
+  }
+
+  getGenreMovie(){
+    this.httpClient.get<any>('https://api.themoviedb.org/3/genre/movie/list?api_key=9d8b48fb32540c5a9d149f413900ee04').subscribe((Response: any)=>{
+    this.genres = Response.genres;
+    console.log(this.genres);   
+    });
+  }
+
+  searchMoviebyGenre(){
+    let opt:any = document.getElementById('opt');
+    let optValue: any = opt.options[opt.selectedIndex].text
+    this.getMovie(optValue);
+  }  
+
+  //function for display the result of the request SearchMovie
+  getMovieGenre(inputGenre:string):void{
+    this.httpClient.get<any>('https://api.themoviedb.org/3/genre/movie/list?api_key=9d8b48fb32540c5a9d149f413900ee04&query='+inputGenre).subscribe((Response: any)=>{
+      console.log(Response.results);
+     this.movies=Response.results; 
+     //this.inputSearch=inputSearch;
+     let dynamic:any=document.querySelector('.dynamic')
+     dynamic.removeAttribute('class');
+     dynamic.setAttribute('class','dynamic');
+     this.scrollDynamic();
+    });
   }
 
 }
