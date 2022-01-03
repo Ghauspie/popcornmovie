@@ -153,8 +153,7 @@ export class MovieComponent implements OnInit {
   getMovieGenre(inputGenre:number,inputGenreName:string):void{
     this.httpClient.get<any>('https://api.themoviedb.org/3/discover/movie?api_key=9d8b48fb32540c5a9d149f413900ee04&with_genres='+inputGenre).subscribe((Response: any)=>{
       console.log(Response);
-      this.movies="";
-     this.moviesgenre=Response.results; 
+     this.movies=Response.results; 
      this.inputSearch=inputGenreName; 
      let dynamic:any=document.querySelector('.dynamic')
      dynamic.removeAttribute('class');

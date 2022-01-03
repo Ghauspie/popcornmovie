@@ -52,7 +52,7 @@
     <h2>Résultats pour « {{inputSearch}} »<br></h2>
     <div class="itemList">
 
-        <span *ngFor="let item of movies || moviesgenre">
+        <span *ngFor="let item of movies">
             <figure class="snip1527" (click)="movie(item.id)" *ngIf="(item.poster_path+item.backdrop_path != '' && item.poster_path+item.backdrop_path != null && item.poster_path+item.backdrop_path != undefined) && (item.name+item.title != '' && item.name+item.title != null && item.name+item.title != undefined) && (item.media_type=='movie' || item.media_type==null)" >
                 <div class="image"><img [src]="imgurl+checkImg(item.poster_path, item.backdrop_path)" alt="poster of movie of {{item.title}}" /></div>
                 <figcaption>
