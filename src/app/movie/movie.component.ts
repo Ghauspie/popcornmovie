@@ -92,5 +92,6 @@ export class MovieComponent implements OnInit {
       sectionDynamic.scrollIntoView()
     },50)
   }
+
 }
 
