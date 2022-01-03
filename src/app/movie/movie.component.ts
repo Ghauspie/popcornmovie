@@ -58,6 +58,12 @@ export class MovieComponent implements OnInit {
     this.SearchMovie="";
   }
 
+  handleKeyUp(event:any){
+    if (event.keyCode===13){
+      this.clickme();
+    }
+  }
+
   movie(id:number):void{
     console.log(id);
     this.httpClient.get<any>('https://api.themoviedb.org/3/movie/'+id+'?api_key=9d8b48fb32540c5a9d149f413900ee04').subscribe((Response: any)=>{
@@ -70,7 +76,9 @@ export class MovieComponent implements OnInit {
     });
   }
   
-
+  private closeModal():void{
+    this.closeBtn.nativeElement.click();
+  }
 /* @HostListener('window:click', ['$event']) onClick(event)
   {  
   if(!event.target.closest("snip1527"))
@@ -79,7 +87,8 @@ export class MovieComponent implements OnInit {
     }
   } */
 
-/*   closemovie(){
+   closemovie(){
+     this.closeModal;
     console.log("test de la fenetre close")
     let movieOne:any=document.getElementById('movieOne')
      movieOne.setAttribute("class",'hidden');  
@@ -87,7 +96,7 @@ export class MovieComponent implements OnInit {
      itemList.removeAttribute('class');
      itemList.setAttribute("class","itemList");
   }
-
+ /* 
   public closeModal(): void {
     console.log('test 3')
     this.closeBtn.nativeElement.click();
