@@ -99,6 +99,7 @@ export class MovieComponent implements OnInit {
       this.fetchYoutube(Response.title);
       let illustration:any=document.querySelector('.modalbox .illustration');
       illustration.src= this.imgurl + this.checkImg(Response.poster_path, Response.backdrop_path)
+      this.autofocus();
     });
   }
 
@@ -128,6 +129,12 @@ export class MovieComponent implements OnInit {
      itemList.setAttribute("class","itemList");
   }  
 
+  autofocus(){
+    let sectionDynamic:any = document.querySelector('.modalbox');
+    setTimeout(()=>{
+      sectionDynamic.scrollIntoView()
+    },50)
+  }
   scrollDynamic(){
     let sectionDynamic:any = document.getElementById('dynamic');
     setTimeout(()=>{
@@ -153,8 +160,7 @@ export class MovieComponent implements OnInit {
   getMovieGenre(inputGenre:number,inputGenreName:string):void{
     this.httpClient.get<any>('https://api.themoviedb.org/3/discover/movie?api_key=9d8b48fb32540c5a9d149f413900ee04&with_genres='+inputGenre).subscribe((Response: any)=>{
       console.log(Response);
-      this.movies="";
-     this.moviesgenre=Response.results; 
+     this.movies=Response.results; 
      this.inputSearch=inputGenreName; 
      let dynamic:any=document.querySelector('.dynamic')
      dynamic.removeAttribute('class');
