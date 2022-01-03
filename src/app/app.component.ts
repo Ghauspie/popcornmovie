@@ -17,7 +17,7 @@ export class AppComponent {
   let find:string=this.SearchMovie;
   return find;
 } */
-
+/*
   fetchYoutube(titre:string){
     //this.youtube$ = this.youtubeService.fetchYoutube();
     this.youtubeService.fetchYoutube(titre).subscribe((data:any) => {
@@ -32,4 +32,5 @@ export class AppComponent {
     }
     )
   }
+*/
 }
