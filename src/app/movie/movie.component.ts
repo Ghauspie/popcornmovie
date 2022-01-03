@@ -99,6 +99,7 @@ export class MovieComponent implements OnInit {
       this.fetchYoutube(Response.title);
       let illustration:any=document.querySelector('.modalbox .illustration');
       illustration.src= this.imgurl + this.checkImg(Response.poster_path, Response.backdrop_path)
+      this.autofocus();
     });
   }
 
@@ -128,6 +129,12 @@ export class MovieComponent implements OnInit {
      itemList.setAttribute("class","itemList");
   }  
 
+  autofocus(){
+    let sectionDynamic:any = document.querySelector('.modalbox');
+    setTimeout(()=>{
+      sectionDynamic.scrollIntoView()
+    },50)
+  }
   scrollDynamic(){
     let sectionDynamic:any = document.getElementById('dynamic');
     setTimeout(()=>{
