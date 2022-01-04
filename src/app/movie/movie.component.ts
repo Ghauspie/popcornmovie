@@ -63,18 +63,15 @@ export class MovieComponent implements OnInit {
     console.log('http://api.themoviedb.org/3/search/multi?api_key=9d8b48fb32540c5a9d149f413900ee04&query='+inputSearchClean);
     this.httpClient.get<any>('http://api.themoviedb.org/3/search/multi?api_key=9d8b48fb32540c5a9d149f413900ee04&query='+inputSearchClean).subscribe((Response: any)=>{
       console.log(Response);
-     this.pagiId=Response.total_pages;
-     console.log(this.pagiId);
-     
+/*      this.pagiId=Response.total_pages;
+     console.log(this.pagiId); */
      this.test=this.getPagination(Response.total_pages);
-     
      this.movies=Response.results; 
      this.inputSearch=inputSearch;
      let dynamic:any=document.querySelector('.dynamic')
      dynamic.removeAttribute('class');
      dynamic.setAttribute('class','dynamic');
      this.scrollDynamic();
-     
     });
   }
 
@@ -183,6 +180,7 @@ export class MovieComponent implements OnInit {
   getMovieGenre(inputGenre:number,inputGenreName:string):void{
     this.httpClient.get<any>('https://api.themoviedb.org/3/discover/movie?api_key=9d8b48fb32540c5a9d149f413900ee04&with_genres='+inputGenre).subscribe((Response: any)=>{
       console.log(Response);
+     this.test=this.getPagination(Response.total_pages);
      this.movies=Response.results; 
      this.inputSearch=inputGenreName; 
      let dynamic:any=document.querySelector('.dynamic')
