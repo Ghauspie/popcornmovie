@@ -128,18 +128,28 @@
     width: 100%;
     justify-content: center;
     .buttonpagi{
-      /* margin-right: 5%; */
-      width: 5%;
-      border: solid 1px gray;
-      border-radius: 30px;
-      background-color:#00C28E ;
-      color: black;
+      padding: 5px;
+      min-width: 40px;
+      max-width: 40px;
+      border: solid 1px silver;
+      background-color:#fff ;
+      color: rgb(12, 150, 241);
       text-decoration:none; 
       text-align: center;
-      
+      cursor: pointer;
+      transition: all 500ms ease-in-out ;
     }
     .buttonpagi:hover{
-      background-color: cyan;
+      background-color: #00C28E;
+      color:#fff;
+    }
+    .buttonpagi:first-child{
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+    .buttonpagi:last-child{
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
     }
   }
   
