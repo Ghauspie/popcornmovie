@@ -19,6 +19,8 @@ export class MovieComponent implements OnInit {
   Movie:any=[];
   SearchMovie!: string ;
   genres: any=[];
+  test:any;
+  public pagiId:[]=[];
   public inputSearch!:string;
   public imgurl="https://image.tmdb.org/t/p/original";
   private _movieListUrl="https://api.themoviedb.org/3/movie/550?api_key=9d8b48fb32540c5a9d149f413900ee04";
@@ -60,16 +62,37 @@ export class MovieComponent implements OnInit {
     let inputSearchClean:string = inputSearch.replace(/ /g,"+");
     console.log('http://api.themoviedb.org/3/search/multi?api_key=9d8b48fb32540c5a9d149f413900ee04&query='+inputSearchClean);
     this.httpClient.get<any>('http://api.themoviedb.org/3/search/multi?api_key=9d8b48fb32540c5a9d149f413900ee04&query='+inputSearchClean).subscribe((Response: any)=>{
-      console.log(Response.results);
+      console.log(Response);
+     this.pagiId=Response.total_pages;
+     console.log(this.pagiId);
+     
+     this.test=this.getPagination(Response.total_pages);
+     
      this.movies=Response.results; 
      this.inputSearch=inputSearch;
      let dynamic:any=document.querySelector('.dynamic')
      dynamic.removeAttribute('class');
      dynamic.setAttribute('class','dynamic');
      this.scrollDynamic();
+     
     });
   }
 
+ getPagination(pagiId:number){
+  const test=[];
+    for(let i=0;i<=pagiId;i++){
+      test.push(i);
+    }
+    return test;
+  }
+  getMoviesPage(id:number,inputSearch:string){
+    this.httpClient.get<any>('http://api.themoviedb.org/3/search/multi?api_key=9d8b48fb32540c5a9d149f413900ee04&query='+inputSearch+'&page='+id).subscribe((Response: any)=>{
+      console.log(Response)
+      this.movies=Response.results; 
+      this.inputSearch=inputSearch;
+      this.scrollDynamic();
+    });
+  }
   //Function for reset the input SearchMovie  and the result
   resetResult(){
     let dynamic=document.querySelector('.dynamic')as HTMLElement
@@ -168,7 +191,5 @@ export class MovieComponent implements OnInit {
      this.scrollDynamic();
     });
   }
-
-
 }
 

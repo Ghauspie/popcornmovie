@@ -50,6 +50,9 @@
 </section>
 <section class="dynamic hidden" id="dynamic">
     <h2>Résultats pour « {{inputSearch}} »<br></h2>
+    <div class="pagi" >
+        <a class="buttonpagi"*ngFor="let id of test" (click)="getMoviesPage(id,inputSearch)">{{id}}</a>
+    </div>
     <div class="itemList">
 
         <span *ngFor="let item of movies">

@@ -118,3 +118,18 @@
     height: 100vh;
     background: rgba(0, 0, 0, 0.877);
   }
+  .pagi{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    .buttonpagi{
+      /* margin-right: 5%; */
+      width: 2%;
+      border: solid 1px gray;
+      border-radius: 30px;
+      background-color:#00C28E ;
+      color: black;
+    }
+  }
+  
