@@ -191,15 +191,15 @@ export class MovieComponent implements OnInit {
   }
   summaryShort(text:any)  
   {
-    let sum: any;
-    if(text.length>150)
+    let summary: any;
+    if(text.length>=200)
     {
-      sum = text.substr(1, 200)+"...";
+      summary = text.substr(1, 200)+"...";
     }
     else{
-      sum = text;
+      summary = text;
     }
-    return sum;
+    return summary;
   }
 }
 
