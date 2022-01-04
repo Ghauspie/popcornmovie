@@ -17,7 +17,7 @@
             
             <div class="content">
                 <h5>Summary:</h5>
-                <p>{{Movie.title}}{{Movie.overview}}</p>
+                <p>{{Movie.overview == '' ? 'Any summary available.' : Movie.overview}}</p>
                 <h5 class="bandeOff">Trailer:</h5>
                 <div id="youtube"></div>
             </div>
@@ -32,18 +32,19 @@
                 <h1>Nothing on TV yet bro' ?</h1>
                 <p>Type at least one keyword to find your happiness.</p>
                 <div class="input-group">
-
                     <input (click)="resetResult()" class="form-control autocomplete" type="text" id="SearchMovie" (keyup)="handleKeyUp($event)"  name="SearchMovie" placeholder="Keyword, Actor, ..." [(ngModel)]="SearchMovie">
-                        <button class="btn btn-warning" type="button" (click)="clickme()"><i class="fa fa-search"></i></button></div><p><br>
-
-                    <label for="cars">Genre:</label>
-                    <select id="opt" >
+                    <button class="btn btn-warning" type="button" (click)="clickme()"><i class="fa fa-search"></i></button>
+                </div>
+                <br>
+                <label for="cars">Or select a movie genre:</label>
+                <div class="input-group">
+                    <select id="opt" class="form-control form-select" (change)="searchMoviebyGenre()">
+                        <option selected disabled></option>
                         <option [value]="genre.id" *ngFor="let genre of genres">{{genre.name}}</option>
                     </select>
-
-                    <button (click)="searchMoviebyGenre()">Send</button>
-                    <br>
-                    <i>Pssss !</i> The trick to avoid paying the TV fee. Come on bro <a href='https://www.lafinancepourtous.com/outils/questions-reponses/qui-peut-etre-exonere-de-la-redevance-audiovisuelle/?gclid=CjwKCAiAiKuOBhBQEiwAId_sK-iLmQ920xKXj4X5JWWmy6NTw5tnVT7coYKHxt6AXbiY-Z_oC9-xFRoC6DQQAvD_BwE'>give me the tip</a>!<br /></p>
+                    <button class="btn btn-warning" type="button" (click)="searchMoviebyGenre()"><i class="fa fa-search"></i></button>
+                </div>
+                <p><br><i>Pssss !</i> The trick to avoid paying the TV fee. Come on bro <a href='https://www.lafinancepourtous.com/outils/questions-reponses/qui-peut-etre-exonere-de-la-redevance-audiovisuelle/?gclid=CjwKCAiAiKuOBhBQEiwAId_sK-iLmQ920xKXj4X5JWWmy6NTw5tnVT7coYKHxt6AXbiY-Z_oC9-xFRoC6DQQAvD_BwE'>give me the tip</a>!<br /></p>
             </div>
         </div>
     </div>
@@ -65,8 +66,7 @@
                   </div>
                   <h3>{{item.title}}{{item.name}}</h3>
                   <br>
-                    <p><i class="fas fa-gamepad"></i> </p>
-                    <p><i class="fas fa-film"></i> {{item.overview}}</p>
+                    <p><i class="fas fa-film"></i> {{item.overview == '' ? 'Any summary available.' : summaryShort(item.overview)}}</p>
                 </figcaption>
             </figure>
         </span>

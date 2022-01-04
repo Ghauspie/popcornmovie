@@ -189,5 +189,18 @@ export class MovieComponent implements OnInit {
      this.scrollDynamic();
     });
   }
+  summaryShort(text:any)  
+  {
+    let sum: any;
+    if(text.length>150)
+    {
+      sum = text.substr(1, 200)+"...";
+    }
+    else{
+      sum = text;
+    }
+    return sum;
+  }
 }
+
 
